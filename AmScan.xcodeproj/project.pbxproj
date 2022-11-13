@@ -7,22 +7,59 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F046D4F282EADF200B7BC3B /* View+hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F046D4E282EADF200B7BC3B /* View+hidden.swift */; };
+		4F046D51282EAE8800B7BC3B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F046D50282EAE8800B7BC3B /* Constants.swift */; };
+		4F0760592835072A004C518C /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0760582835072A004C518C /* MailView.swift */; };
 		4F12FE832828E7B80050E936 /* AmScanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F12FE822828E7B80050E936 /* AmScanApp.swift */; };
-		4F12FE852828E7B80050E936 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F12FE842828E7B80050E936 /* ContentView.swift */; };
 		4F12FE872828E7BA0050E936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F12FE862828E7BA0050E936 /* Assets.xcassets */; };
 		4F12FE8A2828E7BA0050E936 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F12FE892828E7BA0050E936 /* Preview Assets.xcassets */; };
 		4F12FE8C2828E7BA0050E936 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F12FE8B2828E7BA0050E936 /* Persistence.swift */; };
 		4F12FE8F2828E7BA0050E936 /* AmScan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F12FE8D2828E7BA0050E936 /* AmScan.xcdatamodeld */; };
+		4F2921D52857594100EA12E9 /* NSRegularExpression+matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2921D42857594100EA12E9 /* NSRegularExpression+matches.swift */; };
+		4F2921D72857597B00EA12E9 /* String+~=.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2921D62857597B00EA12E9 /* String+~=.swift */; };
+		4F2C536628329DA600788508 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C536528329DA600788508 /* Contact.swift */; };
+		4F2C536828329F3B00788508 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C536728329F3B00788508 /* Helper.swift */; };
+		4F4690502828ECAC000839E2 /* ScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F46904F2828ECAC000839E2 /* ScannerViewModel.swift */; };
+		4F4690522828ECD1000839E2 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4690512828ECD1000839E2 /* ScannerView.swift */; };
+		4F4690542828ED0A000839E2 /* QrCodeCameraDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4690532828ED0A000839E2 /* QrCodeCameraDelegate.swift */; };
+		4F4690562828ED31000839E2 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4690552828ED31000839E2 /* CameraPreview.swift */; };
+		4F4690582828ED55000839E2 /* QrCodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4690572828ED55000839E2 /* QrCodeScannerView.swift */; };
+		4F46905A2828EE74000839E2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4690592828EE74000839E2 /* ContentView.swift */; };
+		4F67E7772852492A00646BDC /* Dictionary+keyByValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F67E7762852492A00646BDC /* Dictionary+keyByValue.swift */; };
+		4F8B7C22282EDECF00C732ED /* View+hideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8B7C21282EDECF00C732ED /* View+hideKeyboard.swift */; };
+		4F9D468A283BE2C400B1326A /* Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D4689283BE2C400B1326A /* Recognizer.swift */; };
+		4FBBAD7C29210FA700076E25 /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FBBAD7B29210FA700076E25 /* events.json */; };
+		4FBBAD7E2921111600076E25 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBBAD7D2921111600076E25 /* Event.swift */; };
+		4FF375A2291EAE3700B3ED46 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF375A0291EAC6800B3ED46 /* LocationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F046D4E282EADF200B7BC3B /* View+hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+hidden.swift"; sourceTree = "<group>"; };
+		4F046D50282EAE8800B7BC3B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4F0760582835072A004C518C /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
+		4F07605A283531DD004C518C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4F12FE7F2828E7B80050E936 /* AmScan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F12FE822828E7B80050E936 /* AmScanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmScanApp.swift; sourceTree = "<group>"; };
-		4F12FE842828E7B80050E936 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4F12FE862828E7BA0050E936 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F12FE892828E7BA0050E936 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4F12FE8B2828E7BA0050E936 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		4F12FE8E2828E7BA0050E936 /* AmScan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AmScan.xcdatamodel; sourceTree = "<group>"; };
+		4F2921D42857594100EA12E9 /* NSRegularExpression+matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRegularExpression+matches.swift"; sourceTree = "<group>"; };
+		4F2921D62857597B00EA12E9 /* String+~=.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+~=.swift"; sourceTree = "<group>"; };
+		4F2C536528329DA600788508 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		4F2C536728329F3B00788508 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		4F46904F2828ECAC000839E2 /* ScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewModel.swift; sourceTree = "<group>"; };
+		4F4690512828ECD1000839E2 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		4F4690532828ED0A000839E2 /* QrCodeCameraDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeCameraDelegate.swift; sourceTree = "<group>"; };
+		4F4690552828ED31000839E2 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
+		4F4690572828ED55000839E2 /* QrCodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeScannerView.swift; sourceTree = "<group>"; };
+		4F4690592828EE74000839E2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4F67E7762852492A00646BDC /* Dictionary+keyByValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+keyByValue.swift"; sourceTree = "<group>"; };
+		4F8B7C21282EDECF00C732ED /* View+hideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+hideKeyboard.swift"; sourceTree = "<group>"; };
+		4F9D4689283BE2C400B1326A /* Recognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recognizer.swift; sourceTree = "<group>"; };
+		4FBBAD7B29210FA700076E25 /* events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = events.json; sourceTree = "<group>"; };
+		4FBBAD7D2921111600076E25 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		4FF375A0291EAC6800B3ED46 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +73,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F046D4D282EADDF00B7BC3B /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4F046D4E282EADF200B7BC3B /* View+hidden.swift */,
+				4F8B7C21282EDECF00C732ED /* View+hideKeyboard.swift */,
+				4F67E7762852492A00646BDC /* Dictionary+keyByValue.swift */,
+				4F2921D42857594100EA12E9 /* NSRegularExpression+matches.swift */,
+				4F2921D62857597B00EA12E9 /* String+~=.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
 		4F12FE762828E7B80050E936 = {
 			isa = PBXGroup;
 			children = (
@@ -55,12 +104,27 @@
 		4F12FE812828E7B80050E936 /* AmScan */ = {
 			isa = PBXGroup;
 			children = (
+				4FBBAD7B29210FA700076E25 /* events.json */,
+				4F07605A283531DD004C518C /* Info.plist */,
+				4F046D4D282EADDF00B7BC3B /* extensions */,
+				4F12FE882828E7BA0050E936 /* Preview Content */,
 				4F12FE822828E7B80050E936 /* AmScanApp.swift */,
-				4F12FE842828E7B80050E936 /* ContentView.swift */,
 				4F12FE862828E7BA0050E936 /* Assets.xcassets */,
 				4F12FE8B2828E7BA0050E936 /* Persistence.swift */,
 				4F12FE8D2828E7BA0050E936 /* AmScan.xcdatamodeld */,
-				4F12FE882828E7BA0050E936 /* Preview Content */,
+				4F46904F2828ECAC000839E2 /* ScannerViewModel.swift */,
+				4F4690512828ECD1000839E2 /* ScannerView.swift */,
+				4F4690532828ED0A000839E2 /* QrCodeCameraDelegate.swift */,
+				4F4690552828ED31000839E2 /* CameraPreview.swift */,
+				4F4690572828ED55000839E2 /* QrCodeScannerView.swift */,
+				4F4690592828EE74000839E2 /* ContentView.swift */,
+				4F046D50282EAE8800B7BC3B /* Constants.swift */,
+				4F2C536528329DA600788508 /* Contact.swift */,
+				4F2C536728329F3B00788508 /* Helper.swift */,
+				4F0760582835072A004C518C /* MailView.swift */,
+				4F9D4689283BE2C400B1326A /* Recognizer.swift */,
+				4FF375A0291EAC6800B3ED46 /* LocationService.swift */,
+				4FBBAD7D2921111600076E25 /* Event.swift */,
 			);
 			path = AmScan;
 			sourceTree = "<group>";
@@ -133,6 +197,7 @@
 			files = (
 				4F12FE8A2828E7BA0050E936 /* Preview Assets.xcassets in Resources */,
 				4F12FE872828E7BA0050E936 /* Assets.xcassets in Resources */,
+				4FBBAD7C29210FA700076E25 /* events.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,10 +208,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F4690582828ED55000839E2 /* QrCodeScannerView.swift in Sources */,
+				4F8B7C22282EDECF00C732ED /* View+hideKeyboard.swift in Sources */,
+				4FF375A2291EAE3700B3ED46 /* LocationService.swift in Sources */,
+				4F2C536828329F3B00788508 /* Helper.swift in Sources */,
+				4F046D51282EAE8800B7BC3B /* Constants.swift in Sources */,
+				4F9D468A283BE2C400B1326A /* Recognizer.swift in Sources */,
+				4F4690502828ECAC000839E2 /* ScannerViewModel.swift in Sources */,
+				4F4690562828ED31000839E2 /* CameraPreview.swift in Sources */,
 				4F12FE8C2828E7BA0050E936 /* Persistence.swift in Sources */,
-				4F12FE852828E7B80050E936 /* ContentView.swift in Sources */,
+				4F0760592835072A004C518C /* MailView.swift in Sources */,
+				4F67E7772852492A00646BDC /* Dictionary+keyByValue.swift in Sources */,
+				4FBBAD7E2921111600076E25 /* Event.swift in Sources */,
+				4F2921D72857597B00EA12E9 /* String+~=.swift in Sources */,
+				4F2C536628329DA600788508 /* Contact.swift in Sources */,
+				4F4690542828ED0A000839E2 /* QrCodeCameraDelegate.swift in Sources */,
+				4F46905A2828EE74000839E2 /* ContentView.swift in Sources */,
+				4F4690522828ECD1000839E2 /* ScannerView.swift in Sources */,
 				4F12FE8F2828E7BA0050E936 /* AmScan.xcdatamodeld in Sources */,
+				4F046D4F282EADF200B7BC3B /* View+hidden.swift in Sources */,
 				4F12FE832828E7B80050E936 /* AmScanApp.swift in Sources */,
+				4F2921D52857594100EA12E9 /* NSRegularExpression+matches.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +285,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -257,7 +339,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -273,26 +355,32 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"AmScan/Preview Content\"";
 				DEVELOPMENT_TEAM = L4A7549EHC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AmScan/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "To scan QR codes";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Use speech detection (instead of typing) to create notes for the scanned qrcode.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Use speech detection (instead of typing) to create notes for the scanned qrcode.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.10;
 				PRODUCT_BUNDLE_IDENTIFIER = eu.hansolo.AmScan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -302,26 +390,32 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"AmScan/Preview Content\"";
 				DEVELOPMENT_TEAM = L4A7549EHC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AmScan/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "To scan QR codes";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Use speech detection (instead of typing) to create notes for the scanned qrcode.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Use speech detection (instead of typing) to create notes for the scanned qrcode.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.10;
 				PRODUCT_BUNDLE_IDENTIFIER = eu.hansolo.AmScan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

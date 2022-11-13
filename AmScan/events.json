@@ -1,0 +1,202 @@
+{
+    "events": [
+        {
+            "name": "Cloud Strategy & Infrastructure Summit",
+            "country": "AU",
+            "state": "",
+            "city": "Melbourne"
+        },
+        {
+            "name": "Enterprise, Security and Risk Management",
+            "country": "GB",
+            "state": "",
+            "city": "London"
+        },
+        {
+            "name": "DEVNEXUS",
+            "country": "US",
+            "state": "GA",
+            "city": "Atlanta"
+        },
+        {
+            "name": "Devoxx France",
+            "country": "FR",
+            "state": "",
+            "city": "Paris"
+        },
+        {
+            "name": "Kafka Summit",
+            "country": "GB",
+            "state": "",
+            "city": "London"
+        },
+        {
+            "name": "JFokus",
+            "country": "SE",
+            "state": "",
+            "city": "Stockholm"
+        },
+        {
+            "name": "Devoxx UK",
+            "country": "GB",
+            "state": "",
+            "city": "London"
+        },
+        {
+            "name": "Embedded World",
+            "country": "DE",
+            "state": "",
+            "city": "Nurnberg"
+        },
+        {
+            "name": "JBCN",
+            "country": "ES",
+            "state": "",
+            "city": "Barcelona"
+        },
+        {
+            "name": "KCDC",
+            "country": "US",
+            "state": "MO",
+            "city": "Kansas City"
+        },
+        {
+            "name": "DevOpsDaysDallas",
+            "country": "US",
+            "state": "TX",
+            "city": "Dallas"
+        },
+        {
+            "name": "DevOps Talks Conference",
+            "country": "AU",
+            "state": "",
+            "city": "Sydney"
+        },
+        {
+            "name": "COVITS",
+            "country": "US",
+            "state": "VA",
+            "city": "Richmond"
+        },
+        {
+            "name": "Big Data Event",
+            "country": "GB",
+            "state": "",
+            "city": "London"
+        },
+        {
+            "name": "JConf",
+            "country": "US",
+            "state": "IL",
+            "city": "Chicago"
+        },
+        {
+            "name": "Current - Kafka Summit Americas",
+            "country": "US",
+            "state": "TX",
+            "city": "Austin"
+        },
+        {
+            "name": "Devoxx Belgium",
+            "country": "BE",
+            "state": "",
+            "city": "Antwerp"
+        },
+        {
+            "name": "JavaOne",
+            "country": "US",
+            "state": "NV",
+            "city": "Las Vegas"
+        },
+        {
+            "name": "Oracle CloudWorld",
+            "country": "US",
+            "state": "NV",
+            "city": "Las Vegas"
+        },
+        {
+            "name": "QCon",
+            "country": "US",
+            "state": "CA",
+            "city": "San Francisco"
+        },
+        {
+            "name": "JAX Mainz",
+            "country": "DE",
+            "state": "",
+            "city": "Mainz"
+        },
+        {
+            "name": "W-JAX Munich",
+            "country": "DE",
+            "state": "",
+            "city": "Munich"
+        },
+        {
+            "name": "Black Hat Europe",
+            "country": "GB",
+            "state": "",
+            "city": "London"
+        },
+        {
+            "name": "Cassandra Summit",
+            "country": "US",
+            "state": "CA",
+            "city": "San Jose"
+        },
+        {
+            "name": "JavaLand",
+            "country": "DE",
+            "state": "",
+            "city": "Bruehl"
+        },
+        {
+            "name": "JavaZone",
+            "country": "NW",
+            "state": "",
+            "city": "Oslo"
+        },
+        {
+            "name": "GeeCon Krakow",
+            "country": "PL",
+            "state": "",
+            "city": "Krakow"
+        },
+        {
+            "name": "GeeCon Prague",
+            "country": "CZ",
+            "state": "",
+            "city": "Prague"
+        },
+        {
+            "name": "Devoxx Poland",
+            "country": "PL",
+            "state": "",
+            "city": "Krakow"
+        },
+        {
+            "name": "J-Fall",
+            "country": "NL",
+            "state": "",
+            "city": "Ede"
+        },
+        {
+            "name": "J-Spring",
+            "country": "NL",
+            "state": "",
+            "city": "Utrecht"
+        },
+        {
+            "name": "FooCon",
+            "country": "FI",
+            "state": "",
+            "city": "Helsinki"
+        },
+        {
+            "name": "JNation",
+            "country": "PT",
+            "state": "",
+            "city": "Coimbra"
+        }
+    ]
+}
