@@ -191,6 +191,24 @@ class Helper {
             return []
         }
     }
+    
+    public static func getEventsFromGithub() -> Void {
+        Helper.loadJson(fromURLString: Constants.EVENTS_URL) { (result) in
+            switch result {
+            
+            case .success(let data):
+                print("Success")
+                if let eventsObj = Helper.parse(jsonData: data) {
+                    print(eventsObj.events.first?.country)
+                } else {
+                    print("Error")
+                }
+            
+            case .failure(let error):
+                print("Error loading events from github")
+            }
+        }
+    }
 
     public static func readLocalFile(forName name: String) -> Data? {
         do {

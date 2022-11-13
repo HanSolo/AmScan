@@ -9,6 +9,8 @@ import Foundation
 
 public struct Constants {
     
+    public static let EVENTS_URL: String = "https://raw.githubusercontent.com/HanSolo/AmScan/main/AmScan/events.json"
+    
     public enum Country: String {
         case AD
         case AE

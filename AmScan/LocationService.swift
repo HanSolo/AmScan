@@ -18,6 +18,7 @@ class LocationSerivce: NSObject, CLLocationManagerDelegate, ObservableObject {
     private override init() {
         super.init()
         
+        Helper.getEventsFromGithub()
         
         let events = Helper.getEvents()
         if !events.isEmpty {
