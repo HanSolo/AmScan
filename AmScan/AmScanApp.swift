@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct AmScanApp: App {
     let persistenceController = PersistenceController.shared
-
+    
     
     var body: some Scene {
         WindowGroup {

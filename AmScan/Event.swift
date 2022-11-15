@@ -9,11 +9,19 @@ import Foundation
 
 
 
-struct Event : Codable {
+struct Event : Codable, Hashable {    
     var name    : String
     var country : String
     var state   : String
     var city    : String
+    
+    
+    init(name: String, country: String, state: String, city: String) {
+        self.name    = name
+        self.country = country
+        self.state   = state
+        self.city    = city
+    }
 }
 
 struct Events: Codable {

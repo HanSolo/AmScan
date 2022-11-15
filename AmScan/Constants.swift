@@ -11,6 +11,8 @@ public struct Constants {
     
     public static let EVENTS_URL: String = "https://raw.githubusercontent.com/HanSolo/AmScan/main/AmScan/events.json"
     
+    public static let NOTES_PLACEHOLDER_STRING: String = "Notes:"
+    
     public enum Country: String {
         case AD
         case AE
@@ -524,6 +526,10 @@ public struct Constants {
             case .ZW: return "Zimbabwe"
             case .NN: return "Unknown"
             }
+        }
+        
+        public static func fromText(isoCode: String) -> Country {
+            return Country(rawValue: isoCode) ?? Country.NN
         }
     }
 }

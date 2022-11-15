@@ -115,7 +115,10 @@ struct QrCodeScannerView: UIViewRepresentable {
     
     func startScanning() {
         if session.isRunning { return }
-        session.startRunning()
+        let dispatchQueue = DispatchQueue(label: "BkgQueue", qos: .background)
+        dispatchQueue.async{
+            session.startRunning()
+        }
     }
         
     func stopScanning() {

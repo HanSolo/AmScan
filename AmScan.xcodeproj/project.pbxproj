@@ -30,7 +30,6 @@
 		4F9D468A283BE2C400B1326A /* Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D4689283BE2C400B1326A /* Recognizer.swift */; };
 		4FBBAD7C29210FA700076E25 /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FBBAD7B29210FA700076E25 /* events.json */; };
 		4FBBAD7E2921111600076E25 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBBAD7D2921111600076E25 /* Event.swift */; };
-		4FF375A2291EAE3700B3ED46 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF375A0291EAC6800B3ED46 /* LocationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +58,6 @@
 		4F9D4689283BE2C400B1326A /* Recognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recognizer.swift; sourceTree = "<group>"; };
 		4FBBAD7B29210FA700076E25 /* events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = events.json; sourceTree = "<group>"; };
 		4FBBAD7D2921111600076E25 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		4FF375A0291EAC6800B3ED46 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +121,6 @@
 				4F2C536728329F3B00788508 /* Helper.swift */,
 				4F0760582835072A004C518C /* MailView.swift */,
 				4F9D4689283BE2C400B1326A /* Recognizer.swift */,
-				4FF375A0291EAC6800B3ED46 /* LocationService.swift */,
 				4FBBAD7D2921111600076E25 /* Event.swift */,
 			);
 			path = AmScan;
@@ -210,7 +207,6 @@
 			files = (
 				4F4690582828ED55000839E2 /* QrCodeScannerView.swift in Sources */,
 				4F8B7C22282EDECF00C732ED /* View+hideKeyboard.swift in Sources */,
-				4FF375A2291EAE3700B3ED46 /* LocationService.swift in Sources */,
 				4F2C536828329F3B00788508 /* Helper.swift in Sources */,
 				4F046D51282EAE8800B7BC3B /* Constants.swift in Sources */,
 				4F9D468A283BE2C400B1326A /* Recognizer.swift in Sources */,

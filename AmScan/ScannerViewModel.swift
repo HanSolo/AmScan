@@ -10,7 +10,7 @@ import AVKit
 import SwiftUI
 
 
-class ScannerViewModel: ObservableObject {
+@MainActor class ScannerViewModel: ObservableObject {
     
     /// Defines how often we are going to try looking for a new QR-code in the camera feed.
     let scanInterval: Double = 1.0
@@ -46,19 +46,21 @@ class ScannerViewModel: ObservableObject {
     @Published var contactMap      : [ContactEntity:Contact] = [:]
     @Published var numberOfContacts: Int                     = 0
     @Published var showExistsAlert : Bool                    = false
+    @Published var selectedEvent   : Event                   = Event(name: "Any", country: "", state: "", city: "")
     
     
     init() {
         let entities = Helper.getAllContactEntities()
         for entity in entities {
             contactMap[entity] = Helper.createContact(contactEntity: entity)
+            debugPrint("created entity with event name: \(String(describing: entity.eventName))")
         }
         self.numberOfContacts  = self.contactMap.count
     }
     
     
     func onFoundQrCode(_ code: String) {
-        let contact = Helper.parse(text: code, mql: isMQL, notes: notes)
+        let contact = Helper.parse(text: code, mql: isMQL, notes: notes, event: selectedEvent)
         for existingContact in self.contactMap.values {
             if Contact.equals(lhs: contact, rhs: existingContact) {
                 self.isScanning      = false
@@ -77,16 +79,20 @@ class ScannerViewModel: ObservableObject {
             let existingContact = self.contactMap[entity]
             if existingContact == contact {
                 self.contactMap.updateValue(contact, forKey: entity)
-                entity.firstName = contact.firstName
-                entity.lastName  = contact.lastName
-                entity.title     = contact.title
-                entity.company   = contact.company
-                entity.email     = contact.email
-                entity.phone     = contact.phone
-                entity.country   = contact.country
-                entity.state     = contact.state
-                entity.notes     = contact.notes
-                entity.mql       = contact.isMql
+                entity.firstName    = contact.firstName
+                entity.lastName     = contact.lastName
+                entity.title        = contact.title
+                entity.company      = contact.company
+                entity.email        = contact.email
+                entity.phone        = contact.phone
+                entity.country      = contact.country
+                entity.state        = contact.state
+                entity.notes        = contact.notes
+                entity.mql          = contact.isMql
+                entity.eventName    = contact.eventName
+                entity.eventCountry = contact.eventCountry
+                entity.eventState   = contact.eventState
+                entity.eventCity    = contact.eventCity
                 Helper.saveContactEntity(contactEntity: entity)
                 success = true
                 break
@@ -115,8 +121,9 @@ class ScannerViewModel: ObservableObject {
         Only used to persist the data from the last scan
      */
     func save() {
-        let contact = Helper.parse(text: self.code, mql: self.isMQL, notes: self.notes)
+        let contact = Helper.parse(text: self.code, mql: self.isMQL, notes: self.notes, event: self.selectedEvent)
         let entity  = Helper.createContactEntity(contact: contact)
+        
         Helper.saveContactEntity(contactEntity: entity)
         
         self.contactMap[entity] = contact
@@ -132,5 +139,5 @@ class ScannerViewModel: ObservableObject {
         self.code          = ""
         self.scannedResult = ""
         self.isScanning    = false
-    }
+    }                
 }

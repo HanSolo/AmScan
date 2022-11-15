@@ -11,16 +11,21 @@ import CoreData
 import AudioToolbox
 import CoreLocation
 import MapKit
+import SwiftUI
 
 
 class Helper {
     private static let persistenceController = PersistenceController.shared
-    
-    
-    public static func parse(text: String, mql: Bool, notes: String) -> Contact {
+        
+
+    public static func parse(text: String, mql: Bool, notes: String, event: Event) -> Contact {
         let newContact = Contact()
-        newContact.isMql = mql
-        newContact.notes = notes
+        newContact.isMql        = mql
+        newContact.notes        = notes
+        newContact.eventName    = event.name
+        newContact.eventCountry = event.country
+        newContact.eventState   = event.state
+        newContact.eventCity    = event.city
         
         if text.contains("BEGIN:VCARD") && text.contains("END:VCARD") { // VCARD FORMAT
             if let data = text.data(using: .utf16) {
@@ -83,31 +88,39 @@ class Helper {
     
     public static func createContactEntity(contact: Contact) -> ContactEntity {
         let contactEntity = ContactEntity(context: persistenceController.container.viewContext)
-        contactEntity.firstName = contact.firstName
-        contactEntity.lastName  = contact.lastName
-        contactEntity.title     = contact.title
-        contactEntity.company   = contact.company
-        contactEntity.country   = contact.country
-        contactEntity.state     = contact.state
-        contactEntity.email     = contact.email
-        contactEntity.phone     = contact.phone
-        contactEntity.mql       = contact.isMql
-        contactEntity.notes     = contact.notes
+        contactEntity.firstName    = contact.firstName
+        contactEntity.lastName     = contact.lastName
+        contactEntity.title        = contact.title
+        contactEntity.company      = contact.company
+        contactEntity.country      = contact.country
+        contactEntity.state        = contact.state
+        contactEntity.email        = contact.email
+        contactEntity.phone        = contact.phone
+        contactEntity.mql          = contact.isMql
+        contactEntity.notes        = contact.notes
+        contactEntity.eventName    = contact.eventName
+        contactEntity.eventCountry = contact.eventCountry
+        contactEntity.eventState   = contact.eventState
+        contactEntity.eventCity    = contact.eventCity
         return contactEntity
     }
     
     public static func createContact(contactEntity: ContactEntity) -> Contact {
         let contact = Contact()
-        contact.firstName = contactEntity.firstName ?? ""
-        contact.lastName  = contactEntity.lastName  ?? ""
-        contact.title     = contactEntity.title     ?? ""
-        contact.company   = contactEntity.company   ?? ""
-        contact.country   = contactEntity.country   ?? ""
-        contact.state     = contactEntity.state     ?? ""
-        contact.email     = contactEntity.email     ?? ""
-        contact.phone     = contactEntity.phone     ?? ""
-        contact.isMql     = contactEntity.mql
-        contact.notes     = contactEntity.notes     ?? ""
+        contact.firstName    = contactEntity.firstName      ?? ""
+        contact.lastName     = contactEntity.lastName       ?? ""
+        contact.title        = contactEntity.title          ?? ""
+        contact.company      = contactEntity.company        ?? ""
+        contact.country      = contactEntity.country        ?? ""
+        contact.state        = contactEntity.state          ?? ""
+        contact.email        = contactEntity.email          ?? ""
+        contact.phone        = contactEntity.phone          ?? ""
+        contact.isMql        = contactEntity.mql
+        contact.notes        = contactEntity.notes          ?? ""
+        contact.eventName    = contactEntity.eventName      ?? "Any"
+        contact.eventCountry = contactEntity.eventCountry   ?? ""
+        contact.eventState   = contactEntity.eventState     ?? ""
+        contact.eventCity    = contactEntity.eventCity      ?? ""
         return contact
     }
     
@@ -116,7 +129,7 @@ class Helper {
             do {
                 try persistenceController.container.viewContext.save()
             } catch {
-                
+                debugPrint("Error saving contact")
             }
         }
     }
@@ -126,7 +139,7 @@ class Helper {
         do {
             try persistenceController.container.viewContext.save()
         } catch {
-            
+            debugPrint("Error deleting contact")
         }
     }
     
@@ -137,7 +150,7 @@ class Helper {
         do {
             entities = try persistenceController.container.viewContext.fetch(fetchRequest)
         } catch {
-            print("Error getting all entities")
+            debugPrint("Error getting all entities")
         }
         return entities
     }
@@ -162,24 +175,25 @@ class Helper {
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
     }
     
-    public static func getCurrentCountry(lat: Double, lon: Double) -> Constants.Country {
-        let geoCoder = CLGeocoder();
-        let location = CLLocation(latitude: lat, longitude: lon)
-        var isoCode  = "Unknown"
-        
-        geoCoder.reverseGeocodeLocation(location) { (placemarks, error) in
-            if let error = error {
-                print(error)
-            }
-            guard let placemark = placemarks?.last else { return }
-            isoCode = placemark.isoCountryCode ?? "Unknown"
+    
+    // ******************** Events/Conferences ********************************
+    public static func getEventsAsync() async -> [Event] {
+        let url            = URL(string: Constants.EVENTS_URL)!
+        let urlSession     = URLSession.shared
+        let (data, _)      = try! await urlSession.data(from: url)
+        var events:[Event] = []
+        if let eventsObj = Helper.parse(jsonData: data) {
+            events.append(contentsOf: eventsObj.events)
+            return events
+        } else {
+            debugPrint("Error loading events from github, loading from device instead")
+            events.append(contentsOf: getEventsFromDevice())
+            return events
         }
-        return Constants.Country(rawValue: isoCode) ?? Constants.Country.NN
     }
     
-    
-    public static func getEvents() -> [Event] {
-        let jsonData = Helper.readLocalFile(forName: "events")
+    private static func getEventsFromDevice() -> [Event] {
+        let jsonData = Helper.loadLocalJsonFile(forName: "events")
         if let data = jsonData {
             if let eventsObj = Helper.parse(jsonData: data) {
                 return eventsObj.events
@@ -187,54 +201,21 @@ class Helper {
                 return []
             }
         } else {
-            print("error reading json file")
+            debugPrint("Error loading local json file)")
             return []
         }
     }
     
-    public static func getEventsFromGithub() -> Void {
-        Helper.loadJson(fromURLString: Constants.EVENTS_URL) { (result) in
-            switch result {
-            
-            case .success(let data):
-                print("Success")
-                if let eventsObj = Helper.parse(jsonData: data) {
-                    print(eventsObj.events.first?.country)
-                } else {
-                    print("Error")
-                }
-            
-            case .failure(let error):
-                print("Error loading events from github")
-            }
-        }
-    }
-
-    public static func readLocalFile(forName name: String) -> Data? {
+    private static func loadLocalJsonFile(forName name: String) -> Data? {
         do {
             if let bundlePath = Bundle.main.path(forResource: name, ofType: "json"),
                 let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8) {
                 return jsonData
             }
         } catch {
-            print(error)
+            debugPrint("Error loading local json file: \(String(describing: error))")
         }
         return nil
-    }
-    
-    public static func loadJson(fromURLString urlString: String, completion: @escaping (Result<Data, Error>) -> Void) {
-        if let url = URL(string: urlString) {
-            let urlSession = URLSession(configuration: .default).dataTask(with: url) { (data, response, error) in
-                if let error = error {
-                    completion(.failure(error))
-                }
-                
-                if let data = data {
-                    completion(.success(data))
-                }
-            }
-            urlSession.resume()
-        }
     }
     
     public static func parse(jsonData: Data) -> Events? {
@@ -242,7 +223,7 @@ class Helper {
             let decodedData = try JSONDecoder().decode(Events.self, from: jsonData)
             return decodedData
         } catch {
-            print("error: \(error)")
+            debugPrint("Error parsing json data: \(String(describing: error))")
         }
         return nil
     }

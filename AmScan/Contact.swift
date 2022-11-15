@@ -8,32 +8,40 @@
 import Foundation
 
 class Contact: Identifiable, Equatable {
-    let id        : UUID = UUID()
-    var innerId   : String
-    var firstName : String
-    var lastName  : String
-    var title     : String
-    var company   : String
-    var country   : String
-    var state     : String
-    var email     : String
-    var phone     : String
-    var isMql     : Bool
-    var notes     : String
+    let id          : UUID = UUID()
+    var innerId     : String
+    var firstName   : String
+    var lastName    : String
+    var title       : String
+    var company     : String
+    var country     : String
+    var state       : String
+    var email       : String
+    var phone       : String
+    var isMql       : Bool
+    var notes       : String
+    var eventName   : String
+    var eventCountry: String
+    var eventState  : String
+    var eventCity   : String
     
     
     init() {
-        self.innerId   = UUID().description
-        self.firstName = ""
-        self.lastName  = ""
-        self.title     = ""
-        self.company   = ""
-        self.country   = ""
-        self.state     = ""
-        self.email     = ""
-        self.phone     = ""
-        self.isMql     = false
-        self.notes     = ""
+        self.innerId     = UUID().description
+        self.firstName    = ""
+        self.lastName     = ""
+        self.title        = ""
+        self.company      = ""
+        self.country      = ""
+        self.state        = ""
+        self.email        = ""
+        self.phone        = ""
+        self.isMql        = false
+        self.notes        = ""
+        self.eventName    = "Any"
+        self.eventCountry = ""
+        self.eventState   = ""
+        self.eventCity    = ""
     }
     
     
@@ -42,13 +50,14 @@ class Contact: Identifiable, Equatable {
     }
     
     public func toCSV() -> String {
-        return "\(firstName),\(lastName),\(title),\(company),\(country),\(state),\(email),\(phone),\(isMql),\(notes)"
+        return "\(firstName),\(lastName),\(title),\(company),\(country),\(state),\(email),\(phone),\(isMql),\(notes),\(eventName),\(eventCountry),\(eventState),\(eventCity)"
     }
     
     static func equals(lhs: Contact, rhs: Contact) -> Bool {
-        return lhs.firstName == rhs.firstName &&
-               lhs.lastName  == rhs.lastName &&
-               lhs.email     == rhs.email
+        return lhs.firstName  == rhs.firstName &&
+               lhs.lastName   == rhs.lastName &&
+               lhs.email      == rhs.email &&
+               lhs.eventName  == rhs.eventName
     }
     
     static func == (lhs: Contact, rhs: Contact) -> Bool {

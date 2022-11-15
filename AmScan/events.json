@@ -1,6 +1,12 @@
 {
     "events": [
         {
+            "name": "Any",
+            "country": "",
+            "state": "",
+            "city": ""
+        },
+        {
             "name": "Cloud Strategy & Infrastructure Summit",
             "country": "AU",
             "state": "",

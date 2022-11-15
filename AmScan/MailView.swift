@@ -21,8 +21,7 @@ struct MailView: UIViewControllerRepresentable {
         @Binding var isShowing: Bool
         @Binding var result   : Result<MFMailComposeResult, Error>?
 
-        init(isShowing: Binding<Bool>,
-             result: Binding<Result<MFMailComposeResult, Error>?>) {
+        init(isShowing: Binding<Bool>, result: Binding<Result<MFMailComposeResult, Error>?>) {
             _isShowing = isShowing
             _result    = result
         }
@@ -45,7 +44,7 @@ struct MailView: UIViewControllerRepresentable {
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<MailView>) -> MFMailComposeViewController {
         let entities = Helper.getAllContactEntities()
-        var csv : String = "First Name,Last Name,Title,Company,Country,State,Mail,Phone,MQL,Notes\n"
+        var csv : String = "First Name,Last Name,Title,Company,Country,State,Mail,Phone,MQL,Notes,EventName,EventCountry,EventState,EventCity\n"
         for entity in entities {
             let contact = Helper.createContact(contactEntity: entity)
             csv += contact.firstName
@@ -67,6 +66,14 @@ struct MailView: UIViewControllerRepresentable {
             csv += contact.isMql.description
             csv += ","
             csv += contact.notes
+            csv += ","
+            csv += contact.eventName
+            csv += ","
+            csv += contact.eventCountry
+            csv += ","
+            csv += contact.eventState
+            csv += ","
+            csv += contact.eventCity
             csv += "\n"
         }
         let data = csv.data(using: String.Encoding.utf8, allowLossyConversion: false)

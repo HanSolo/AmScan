@@ -20,13 +20,12 @@ struct ScannerView: View {
     
     @StateObject var viewModel : ScannerViewModel                 = ScannerViewModel()
     @StateObject var recognizer                                   = Recognizer()
-    @StateObject var locationService                              = LocationSerivce.shared
     @State       var mailViewVisible                              = false
     @State       var result : Result<MFMailComposeResult, Error>? = nil
     @State       var showContacts                                 = false
-    @State       var tokens : Set<AnyCancellable>                 = []
-    @State       var coordinates : (lat: Double, lon: Double)     = ( 0, 0 )
                  var qrScannerView                                = QrCodeScannerView()
+    @State       var showingAlert                                 = false
+    @State       var events : [Event]                             = []
     
     
     var body: some View {
@@ -72,8 +71,7 @@ struct ScannerView: View {
                         Spacer()
                         
                         Button(action: {
-                            Helper.removeAllContactEntities()
-                            self.viewModel.numberOfContacts = 0
+                            showingAlert = true
                         }, label: {
                             VStack(alignment: .center) {
                                 Image(systemName: "trash")
@@ -86,6 +84,18 @@ struct ScannerView: View {
                         .background(Color.clear)
                         .cornerRadius(10)
                         .disabled(self.viewModel.numberOfContacts == 0)
+                        .alert(isPresented:$showingAlert) {
+                            Alert(
+                                title  : Text("Delete all scanned leads?"),
+                                message: Text("There is no undo"),
+                                primaryButton: .destructive(Text("Delete")) {
+                                    Helper.removeAllContactEntities()
+                                    self.viewModel.contactMap.removeAll()
+                                    self.viewModel.numberOfContacts = 0
+                                },
+                                secondaryButton: .cancel()
+                            )
+                        }
                     }
                 }
                 
@@ -141,7 +151,7 @@ struct ScannerView: View {
                         }
                         TextEditor(text: Binding(get: { self.viewModel.notes }, set: { self.viewModel.notes = $0 }))
                             .font(.system(.body))
-                            .frame(minHeight: 60, idealHeight: 120, maxHeight: 180)
+                            .frame(minHeight: 40, idealHeight: 100, maxHeight: 180)
                             .cornerRadius(10.0)
                             .padding([.trailing, .leading])
                             .opacity(self.viewModel.notes.isEmpty ? 0.25 : 1)
@@ -161,6 +171,25 @@ struct ScannerView: View {
                     })
                     .padding([.top, .leading, .trailing])
                      
+                    
+                    VStack {
+                        Menu {
+                            Picker(selection: $viewModel.selectedEvent) {
+                                ForEach(events, id: \.self) {
+                                    Text($0.name)
+                                        .tag($0.name)
+                                        .font(.system(size: 10))
+                                }
+                            } label: {}
+                            
+                        } label: {
+                            Text(viewModel.selectedEvent.name)
+                                .font(.system(size: 16))
+                        }
+                        .id(viewModel.selectedEvent)
+                        .padding([.top, .bottom])
+                    }
+                    
                     HStack {
                         Button(action: {
                             self.viewModel.isLightOn.toggle()
@@ -254,7 +283,7 @@ struct ScannerView: View {
                          
                         Spacer()
                         
-                        Button(action: {
+                        Button(action: {                            
                             self.viewModel.save()
                             self.viewModel.isScanning = false
                             self.qrScannerView.stopScanning()
@@ -277,37 +306,17 @@ struct ScannerView: View {
         .alert("Contact already scanned", isPresented: $viewModel.showExistsAlert) {
             Button("OK", role: .cancel) {}
         }
-        .onAppear() {
-            observeCoordinateUpdates()
-            observeLocationAccessDenied()
-            locationService.requestLocationUpdates()
-        }
+        .onAppear(perform: fetchEvents)
         
     }
     
-    func observeCoordinateUpdates() {
-        locationService.coordinatesPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                if case .failure(let error) = completion {
-                    print(error)
-                }
-            } receiveValue: { coordinates in
-                self.coordinates = (coordinates.latitude, coordinates.longitude)
-                print(Helper.getCurrentCountry(lat: coordinates.latitude, lon: coordinates.longitude).name)
-                //print("\(coordinates.latitude), \(coordinates.longitude)")
-            }
-            .store(in: &tokens)
+    private func fetchEvents() {
+        Task.init {
+            //self.events = (await Helper.getEventsAsync()).sorted(by: { $0.name < $1.name }) // sorted alphabetically
+            self.events = (await Helper.getEventsAsync()).sorted(by: { $1.name < $0.name }) // sorted alphabetically reversed
+        }
     }
     
-    func observeLocationAccessDenied() {
-        locationService.deniedLocationAccessPublisher
-            .receive(on: DispatchQueue.main)
-            .sink {
-                print("Show some kind of alert to the user")
-            }
-            .store(in: &tokens)
-    }
 }
 
 
@@ -317,30 +326,39 @@ struct ContactRow: View {
     
     var contact: Contact
     
-    @State private var firstName: String
-    @State private var lastName : String
-    @State private var title    : String
-    @State private var company  : String
-    @State private var email    : String
-    @State private var phone    : String
-    @State private var country  : String
-    @State private var state    : String
-    @State private var notes    : String
-    @State private var isMql    : Bool
+    @State private var firstName   : String
+    @State private var lastName    : String
+    @State private var title       : String
+    @State private var company     : String
+    @State private var email       : String
+    @State private var phone       : String
+    @State private var country     : String
+    @State private var state       : String
+    @State private var notes       : String
+    @State private var isMql       : Bool
+    @State private var eventName   : String
+    @State private var eventCountry: String
+    @State private var eventState  : String
+    @State private var eventCity   : String
+    @State private var showingAlert: Bool = false
     
     
     init(contact: Contact) {
-        self.contact   = contact
-        self.firstName = contact.firstName
-        self.lastName  = contact.lastName
-        self.title     = contact.title
-        self.company   = contact.company
-        self.email     = contact.email
-        self.phone     = contact.phone
-        self.country   = contact.country
-        self.state     = contact.state
-        self.notes     = contact.notes
-        self.isMql     = contact.isMql
+        self.contact      = contact
+        self.firstName    = contact.firstName
+        self.lastName     = contact.lastName
+        self.title        = contact.title
+        self.company      = contact.company
+        self.email        = contact.email
+        self.phone        = contact.phone
+        self.country      = contact.country
+        self.state        = contact.state
+        self.notes        = contact.notes
+        self.isMql        = contact.isMql
+        self.eventName    = contact.eventName
+        self.eventCountry = contact.eventCountry
+        self.eventState   = contact.eventState
+        self.eventCity    = contact.eventCity
     }
     
     
@@ -355,29 +373,55 @@ struct ContactRow: View {
                 TextField("Phone:", text: $phone)
                 TextField("Country:", text: $country)
                 TextField("State:", text: $state)
-                TextEditor(text: $notes)
+                
+                ZStack(alignment: .topLeading) {
+                    if notes.isEmpty {
+                        Text("Notes:")
+                            .foregroundColor(Color(UIColor.placeholderText))
+                    }
+                    TextEditor(text: $notes)
+                        .padding(.horizontal, -4)
+                        .padding(.vertical, -6)
+                }
+                    
                 Toggle("MQL:", isOn: $isMql)
+                    .padding(.vertical, 4)                
             }
             HStack {
                 Button("Delete") {
-                    // Remove contact here
-                    self.viewModel.deleteContact(contact: contact)                    
+                    showingAlert = true
+                }
+                .alert(isPresented:$showingAlert) {
+                    Alert(
+                        title  : Text("Delete lead"),
+                        message: Text("There is no undo"),
+                        primaryButton: .destructive(Text("Delete")) {
+                            // Remove contact here
+                            Helper.removeAllContactEntities()
+                            self.viewModel.deleteContact(contact: contact)
+                        },
+                        secondaryButton: .cancel()
+                    )
                 }
                 Spacer()
                 Button("Save") {
                     // Save contact here
                     let changedContact = Contact()
-                    changedContact.innerId   = contact.innerId
-                    changedContact.firstName = $firstName.wrappedValue
-                    changedContact.lastName  = $lastName.wrappedValue
-                    changedContact.title     = $title.wrappedValue
-                    changedContact.company   = $company.wrappedValue
-                    changedContact.email     = $email.wrappedValue
-                    changedContact.phone     = $phone.wrappedValue
-                    changedContact.country   = $country.wrappedValue
-                    changedContact.state     = $state.wrappedValue
-                    changedContact.notes     = $notes.wrappedValue
-                    changedContact.isMql     = $isMql.wrappedValue
+                    changedContact.innerId      = contact.innerId
+                    changedContact.firstName    = $firstName.wrappedValue
+                    changedContact.lastName     = $lastName.wrappedValue
+                    changedContact.title        = $title.wrappedValue
+                    changedContact.company      = $company.wrappedValue
+                    changedContact.email        = $email.wrappedValue
+                    changedContact.phone        = $phone.wrappedValue
+                    changedContact.country      = $country.wrappedValue
+                    changedContact.state        = $state.wrappedValue
+                    changedContact.notes        = $notes.wrappedValue
+                    changedContact.isMql        = $isMql.wrappedValue
+                    changedContact.eventName    = $eventName.wrappedValue
+                    changedContact.eventCountry = $eventCountry.wrappedValue
+                    changedContact.eventState   = $eventState.wrappedValue
+                    changedContact.eventCity    = $eventCity.wrappedValue
                     self.viewModel.upsertContact(contact: changedContact)
                 }
                 .buttonStyle(BorderlessButtonStyle())
